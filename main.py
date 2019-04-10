@@ -15,10 +15,6 @@ prefix = "/"
 
 @client.event
 async def on_ready():
-    BotPresence = ["name='the BlackSun Castle.', type=3", "name='Toto by Africa', type=2", "name='The Lion Sleeps Tonight by The Tokens', type=2"]
-    BotPresenceRand = random.choice(BotPresence)
-    game = discord.Game(BotPresenceRand)
-    await client.change_presence(game)
     print('logged in as')
     print(client.user.name)
     print(client.user.id)

@@ -8,10 +8,25 @@ from discord.ext import commands
 import requests
 import json
 import random
+from itertools import cycle
 
 client = discord.Client()
 
 prefix = "/"
+
+BotPresence = ["the BlackSun Castle.", "Toto by Africa", "The Lion Sleeps Tonight by The Tokens"]
+BotPresenceType = ["type=3", "type=2", "type=2"]
+
+async def change_status():
+    await client.wait_until_ready()
+    BotPmsg = cycle(BotPresence)
+    BotPtype = cycle(BotPresenceType)
+
+    while not Client.is_closed:
+        current_status = next(BotPmsg)
+        current_type = next(BotPtype)
+        await client.change_presence(game=discord.Game(name=current_status, current_type))
+        await asyncio.sleep(5)
 
 @client.event
 async def on_ready():
@@ -68,10 +83,7 @@ async def on_member_remove(member):
     logs = member.server.get_channel("564975917797998603")
     await client.send_message(logs, leaveMsg)
 
+client.loop.create_task(change_status())
+client.loop.create_task(change_presence())
 token = os.environ.get("DISCORD_BOT_SECRET")
 client.run(token)
-
-keep.alive.keep_alive()
-token = os.environ.get("DISCORD_BOT_SECRET")
-client.run(token)
-#Keeps the bot running even without the browser on.

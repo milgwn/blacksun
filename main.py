@@ -55,6 +55,10 @@ async def on_message(message):
                 await client.send_message(message.channel, gif)
             else:
                 await client.delete_message(message)
+        if message.content.startswith(prefix + "info"):
+            infoTxt = "Please read the info in the <#551924221673078785> as a guide on our Discord channel."
+            await client.delete_message(message)
+            await client.send_message(message.channel, infoTxt)
 
 @client.event
 async def on_member_join(member):
@@ -67,6 +71,7 @@ async def on_member_join(member):
     # <@&552103644137390081> @Grand Steward
     newMemMsgRand = random.choice(newMemMsg)
     newMemMsgLinks = """
+Please read the info in the <#551924221673078785> as a guide on our Discord channel.
 
 In the meantime, please fill out this form:
 https://forms.gle/ucakenwLAo36qPHX7
